@@ -29,6 +29,11 @@ export type Project = {
   nextSlug?: string;
 };
 
+export function assetPath(src: string) {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+  return basePath ? `${basePath}${src}` : src;
+}
+
 function makeFrameFiles(folder: string, project: string, count = 25): ProjectFile[] {
   return [
     { src: `/images/${folder}/Frame.webp`, alt: `${project} 자료 표지`, label: "ARCHIVE 01" },
@@ -188,4 +193,6 @@ export const featuredProjects: Project[] = [
 export function getProject(slug: string) {
   return featuredProjects.find((project) => project.slug === slug);
 }
+
+
 
